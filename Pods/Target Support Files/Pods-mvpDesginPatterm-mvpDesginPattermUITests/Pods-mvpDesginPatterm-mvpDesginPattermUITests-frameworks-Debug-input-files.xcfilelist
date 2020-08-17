@@ -1,0 +1,4 @@
+${PODS_ROOT}/Target Support Files/Pods-mvpDesginPatterm-mvpDesginPattermUITests/Pods-mvpDesginPatterm-mvpDesginPattermUITests-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
+${BUILT_PRODUCTS_DIR}/Outlaw/Outlaw.framework
+${BUILT_PRODUCTS_DIR}/Swifter/Swifter.framework

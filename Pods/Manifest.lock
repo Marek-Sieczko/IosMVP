@@ -1,0 +1,24 @@
+PODS:
+  - Alamofire (5.2.1)
+  - Outlaw (1.1.0)
+  - Swifter (1.4.7)
+
+DEPENDENCIES:
+  - Alamofire
+  - Outlaw
+  - Swifter
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - Outlaw
+    - Swifter
+
+SPEC CHECKSUMS:
+  Alamofire: e911732990610fe89af59ac0077f923d72dc3dfd
+  Outlaw: 00b32d73bee9a62b5150683f70c491d3307d999f
+  Swifter: 2327ef5d872c638aebab79646ce494af508b0c8f
+
+PODFILE CHECKSUM: 5ccff2ad396be72be8bdd1648fafac4ac5a6e945
+
+COCOAPODS: 1.9.3
