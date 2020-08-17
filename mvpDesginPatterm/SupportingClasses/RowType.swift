@@ -6,4 +6,12 @@
 //  Copyright © 2020 Mdo. All rights reserved.
 //
 
-import Foundation
+
+import UIKit
+
+enum RowType: Int{
+    
+    case readable,
+         obscure
+}
+
