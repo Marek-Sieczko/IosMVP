@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SpyCell" rowHeight="103" id="KGk-i7-Jjw" customClass="SpyCell" customModule="mvpDesginPattern" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="103"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="103"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="faB-46-TwV">
+                        <rect key="frame" x="38.5" y="52" width="20" height="20"/>
+                    </activityIndicatorView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w8c-Qx-VYZ">
+                        <rect key="frame" x="8" y="16" width="81" height="92"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="92" id="oEy-0q-34z" userLabel="height = 100"/>
+                            <constraint firstAttribute="width" constant="81" id="p9d-am-tAM" userLabel="width = 100"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="CNg-5r-4Jr" userLabel="Name Lable">
+                        <rect key="frame" x="104" y="16" width="93" height="36"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Age:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kdf-08-xjh">
+                        <rect key="frame" x="103" y="56" width="93" height="33"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ng1-68-72y" userLabel="Age Value Lable">
+                        <rect key="frame" x="208" y="62" width="98" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffu-jj-rl1" userLabel="Name Value Lable">
+                        <rect key="frame" x="205" y="24" width="105" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="w8c-Qx-VYZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="5Uy-5S-Up4" userLabel="View.leading = leading"/>
+                    <constraint firstItem="Ng1-68-72y" firstAttribute="trailing" secondItem="ffu-jj-rl1" secondAttribute="trailing" constant="-4" id="Bhe-rj-omm"/>
+                    <constraint firstItem="Kdf-08-xjh" firstAttribute="top" secondItem="CNg-5r-4Jr" secondAttribute="bottom" constant="4" id="IVI-hv-Cz8"/>
+                    <constraint firstItem="faB-46-TwV" firstAttribute="centerY" secondItem="w8c-Qx-VYZ" secondAttribute="centerY" id="L1C-Zd-fTl"/>
+                    <constraint firstItem="ffu-jj-rl1" firstAttribute="top" secondItem="CNg-5r-4Jr" secondAttribute="top" constant="8" id="Uee-P8-aag"/>
+                    <constraint firstItem="CNg-5r-4Jr" firstAttribute="top" secondItem="w8c-Qx-VYZ" secondAttribute="top" id="XUb-97-Jgv" userLabel="Name Lable.top = topMargin + 9"/>
+                    <constraint firstItem="Kdf-08-xjh" firstAttribute="leading" secondItem="CNg-5r-4Jr" secondAttribute="leading" constant="-1" id="aOx-SC-ciG"/>
+                    <constraint firstItem="w8c-Qx-VYZ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="d4Z-Tp-Vo6"/>
+                    <constraint firstItem="faB-46-TwV" firstAttribute="centerX" secondItem="w8c-Qx-VYZ" secondAttribute="centerX" id="dRV-Ru-Gaa"/>
+                    <constraint firstItem="CNg-5r-4Jr" firstAttribute="leading" secondItem="w8c-Qx-VYZ" secondAttribute="trailing" constant="8" id="fn5-2m-0qS"/>
+                    <constraint firstItem="Kdf-08-xjh" firstAttribute="trailing" secondItem="CNg-5r-4Jr" secondAttribute="trailing" constant="-1" id="l4r-1J-OcS"/>
+                    <constraint firstItem="Ng1-68-72y" firstAttribute="top" secondItem="ffu-jj-rl1" secondAttribute="bottom" constant="17" id="qcq-kg-bTC"/>
+                    <constraint firstItem="Ng1-68-72y" firstAttribute="leading" secondItem="ffu-jj-rl1" secondAttribute="leading" constant="3" id="vQS-qd-Qns"/>
+                    <constraint firstItem="ffu-jj-rl1" firstAttribute="leading" secondItem="CNg-5r-4Jr" secondAttribute="trailing" constant="8" id="zPa-a0-XyD"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="activityIndicator" destination="faB-46-TwV" id="2Ng-1o-ArT"/>
+                <outlet property="ageLable" destination="Kdf-08-xjh" id="azk-h7-a9A"/>
+                <outlet property="ageValueLable" destination="Ng1-68-72y" id="OaD-vD-MvB"/>
+                <outlet property="imageContainer" destination="w8c-Qx-VYZ" id="K1X-xF-hnW"/>
+                <outlet property="nameLable" destination="CNg-5r-4Jr" id="HFQ-hY-MSO"/>
+                <outlet property="nameValueLable" destination="ffu-jj-rl1" id="eSe-uc-QUz"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="147.65625"/>
+        </tableViewCell>
+    </objects>
+</document>

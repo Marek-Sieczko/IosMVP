@@ -12,7 +12,7 @@
 		4EADB8E98A7D9CD6EC6B9A44 /* Pods_mvpDesginPatterm_mvpDesginPattermUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E522CAF6D1F412709C4A8C1 /* Pods_mvpDesginPatterm_mvpDesginPattermUITests.framework */; };
 		5454E2EF24E92487003F0557 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5454E2EE24E92487003F0557 /* AppDelegate.swift */; };
 		5454E2F124E92487003F0557 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5454E2F024E92487003F0557 /* SceneDelegate.swift */; };
-		5454E2F324E92487003F0557 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5454E2F224E92487003F0557 /* ViewController.swift */; };
+		5454E2F324E92487003F0557 /* SpyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5454E2F224E92487003F0557 /* SpyListViewController.swift */; };
 		5454E2F624E92487003F0557 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5454E2F424E92487003F0557 /* Main.storyboard */; };
 		5454E2FB24E9248B003F0557 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5454E2FA24E9248B003F0557 /* Assets.xcassets */; };
 		5454E2FE24E9248B003F0557 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5454E2FC24E9248B003F0557 /* LaunchScreen.storyboard */; };
@@ -27,6 +27,8 @@
 		547FF7A924E96C6000C922BA /* spyDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547FF7A824E96C6000C922BA /* spyDTO.swift */; };
 		547FF7AC24EA909300C922BA /* MockedWebServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547FF7AB24EA909300C922BA /* MockedWebServer.swift */; };
 		547FF7AE24EA945000C922BA /* spies.json in Resources */ = {isa = PBXBuildFile; fileRef = 547FF7AD24EA945000C922BA /* spies.json */; };
+		547FF7B124EAB00100C922BA /* SpyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547FF7AF24EAB00100C922BA /* SpyCell.swift */; };
+		547FF7B224EAB00100C922BA /* SpyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 547FF7B024EAB00100C922BA /* SpyCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,7 +56,7 @@
 		5454E2EB24E92487003F0557 /* mvpDesginPattern.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mvpDesginPattern.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5454E2EE24E92487003F0557 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5454E2F024E92487003F0557 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		5454E2F224E92487003F0557 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5454E2F224E92487003F0557 /* SpyListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpyListViewController.swift; sourceTree = "<group>"; };
 		5454E2F524E92487003F0557 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5454E2FA24E9248B003F0557 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5454E2FD24E9248B003F0557 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -74,6 +76,8 @@
 		547FF7A824E96C6000C922BA /* spyDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = spyDTO.swift; sourceTree = "<group>"; };
 		547FF7AB24EA909300C922BA /* MockedWebServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedWebServer.swift; sourceTree = "<group>"; };
 		547FF7AD24EA945000C922BA /* spies.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = spies.json; sourceTree = "<group>"; };
+		547FF7AF24EAB00100C922BA /* SpyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpyCell.swift; sourceTree = "<group>"; };
+		547FF7B024EAB00100C922BA /* SpyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpyCell.xib; sourceTree = "<group>"; };
 		5A5140A50FE1F66DE443A26D /* Pods-mvpDesginPatterm-mvpDesginPattermUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mvpDesginPatterm-mvpDesginPattermUITests.release.xcconfig"; path = "Target Support Files/Pods-mvpDesginPatterm-mvpDesginPattermUITests/Pods-mvpDesginPatterm-mvpDesginPattermUITests.release.xcconfig"; sourceTree = "<group>"; };
 		74D6003AF5E8782B01188A07 /* Pods-mvpDesginPattermTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mvpDesginPattermTests.release.xcconfig"; path = "Target Support Files/Pods-mvpDesginPattermTests/Pods-mvpDesginPattermTests.release.xcconfig"; sourceTree = "<group>"; };
 		81308FC0E3B9A63EDC7B6701 /* Pods_mvpDesginPattermTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mvpDesginPattermTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,7 +142,6 @@
 				5454E32F24E9269C003F0557 /* UI */,
 				5454E33424E927B1003F0557 /* SupportingClasses */,
 				5454E2F024E92487003F0557 /* SceneDelegate.swift */,
-				5454E2F224E92487003F0557 /* ViewController.swift */,
 				5454E2EE24E92487003F0557 /* AppDelegate.swift */,
 				5454E2F424E92487003F0557 /* Main.storyboard */,
 				5454E2FA24E9248B003F0557 /* Assets.xcassets */,
@@ -225,6 +228,7 @@
 		5454E33024E926DA003F0557 /* SpyList */ = {
 			isa = PBXGroup;
 			children = (
+				5454E2F224E92487003F0557 /* SpyListViewController.swift */,
 			);
 			path = SpyList;
 			sourceTree = "<group>";
@@ -246,6 +250,8 @@
 		5454E33324E92731003F0557 /* SpyCell */ = {
 			isa = PBXGroup;
 			children = (
+				547FF7AF24EAB00100C922BA /* SpyCell.swift */,
+				547FF7B024EAB00100C922BA /* SpyCell.xib */,
 			);
 			path = SpyCell;
 			sourceTree = "<group>";
@@ -403,6 +409,7 @@
 				5454E2FE24E9248B003F0557 /* LaunchScreen.storyboard in Resources */,
 				5454E2FB24E9248B003F0557 /* Assets.xcassets in Resources */,
 				547FF7AE24EA945000C922BA /* spies.json in Resources */,
+				547FF7B224EAB00100C922BA /* SpyCell.xib in Resources */,
 				5454E2F624E92487003F0557 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -531,7 +538,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5454E2F324E92487003F0557 /* ViewController.swift in Sources */,
+				547FF7B124EAB00100C922BA /* SpyCell.swift in Sources */,
+				5454E2F324E92487003F0557 /* SpyListViewController.swift in Sources */,
 				547FF7AC24EA909300C922BA /* MockedWebServer.swift in Sources */,
 				547FF79B24E92D2D00C922BA /* MvpDesginPattern.xcdatamodeld in Sources */,
 				547FF7A724E92F1100C922BA /* Spy+CoreDataProperties.swift in Sources */,

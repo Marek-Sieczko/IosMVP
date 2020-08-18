@@ -9,6 +9,7 @@ target 'mvpDesginPatterm' do
   pod 'Outlaw'
   pod 'Alamofire'
   pod 'Swifter'
+  pod 'Toaster'
 
   target 'mvpDesginPattermTests' do
     inherit! :search_paths
