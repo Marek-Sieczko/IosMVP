@@ -85,10 +85,19 @@ extension SpyListViewController{
 
 extension SpyListViewController{
     
-//    fileprivate func loadSpiesFromDB()->[Spy]{
-//
-//
-//    }
+    fileprivate func loadSpiesFromDB()->[Spy]{
+        
+        let sortOn = NSSortDescriptor(key: "name", ascending: true)
+        
+        let fetchRequest : NSFetchRequest<Spy> = Spy.fetchRequest()
+        
+        fetchRequest.sortDescriptors = [sortOn]
+        
+        let spies = try! persistentContainer.viewContext.fetch(fetchRequest)
+        return spies
+
+
+    }
     
     //MARK: - Helper Methods
     
@@ -128,6 +137,75 @@ extension SpyListViewController {
         
         
     }
+}
+
+extension SpyListViewController {
+     
+    func createSpyDTOsFromJsonData(_ data: Data) -> [SpyDTO]{
+        
+        print("converting json to DTOs")
+        
+        let json : [String:Any] = try! JSON.value(from: data)
+        let spies : [SpyDTO] = try! json.value(for: "spies")
+        
+        return spies
+        
+    }
+    
+    func toUnsavedCoreData(from dtos: [SpyDTO], with context: NSManagedObjectContext) -> [Spy]{
+
+        print("converting DTOs to Core Data Objects")
+
+        let spies = dtos.flatMap {  dto in
+            
+            translate(from: dto, with: context)
+
+
+        }
+        
+        return spies
+
+    }
+    
+}
+
+
+//MARK: - Spy Translation Methods
+
+extension SpyListViewController{
+    
+    func translate(from spy: Spy?) -> SpyDTO?{
+        
+        guard let spy = spy else{ return nil}
+        
+        let gender = Gender(rawValue: spy.gender!)!
+        
+        return SpyDTO(age: Int(spy.age), name: spy.name!, gender: gender, password: spy.password!, imageName: spy.imageName!, isIncognito: spy.isIncognito)
+        
+        
+    }
+    
+    func translate(from dto: SpyDTO?, with context: NSManagedObjectContext) -> Spy?{
+    
+        guard let dto = dto else { return nil}
+        
+        let spy = Spy(context: context)
+        
+        spy.age = Int64(dto.age)
+        
+        spy.name = dto.name
+        spy.gender = dto.gender.rawValue
+        spy.password = dto.password
+        spy.imageName = dto.imageName
+        spy.isIncognito = dto.isIncognito
+        
+        return spy
+        
+        
+}
+    
+    
+    
 }
 
 //MARK: UITableViewDataSource
