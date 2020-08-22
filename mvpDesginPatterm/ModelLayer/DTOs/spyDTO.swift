@@ -36,14 +36,16 @@ extension SpyDTO: Deserializable{
         age = try object.value(for: "age")
         password = try object.value(for: "password")
         isIncognito =  try object.value(for: "isIncognito")
-        imageName =  try object.value(for: "imageName")
+        imageName =  randomImageName
         
     
     }
     
-    var randomImage: String{
+    var randomImageName: String{
         let imageIndex =  Int(arc4random_uniform(UInt32(numImagesPerGender))) + 1
         let imageGender = gender == .female ? "F" : "M"
+        
+        print("Random value imageIndex: \(imageIndex)")
         
         print("=======================",String(format: "Spy%@%02d", imageGender,imageIndex))
         

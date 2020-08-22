@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class SpyCell: UITableViewCell {
     
@@ -25,6 +26,8 @@ class SpyCell: UITableViewCell {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var spy:Spy!
+    
+    
     
     
     override func prepareForReuse() {
@@ -72,7 +75,7 @@ extension SpyCell{
         
          setAccessibilityProperties()
         
-        if #available(ios 10, *){
+        if #available(iOS 10 , *){
             
             commonInit_iOS10()
             
@@ -122,7 +125,7 @@ extension SpyCell{
         assignFonts()
         
         NotificationCenter.default.removeObserver(self)
-       // NotificationCenter.default.addObserver(self, selector: #selector(userChangedTextSize(notification:)), name: NSNotification.Name.didChangeNotification, object: nil)
+
         
     }
     
@@ -140,48 +143,6 @@ extension SpyCell{
     }
     
 }
-//MAKR: - Helper Methods
-
-extension SpyCell{
-    
-    public static var cellId: String{
-        
-        return "SpyCell"
-    }
-    
-    public static var bundle:Bundle {
-        return Bundle(for: SpyCell.self)
-        
-    }
-    
-    public static var nib: UINib{
-        
-        return UINib(nibName: "SpyCell", bundle: SpyCell.bundle)
-        
-    }
-    
-    public static func register(with tableView:UITableView){
-        
-        tableView.register(SpyCell.self, forCellReuseIdentifier: SpyCell.cellId)
-    }
-    
-    public static func loadFromNib(owner: Any?) -> SpyCell{
-        
-        return bundle.loadNibNamed(SpyCell.cellId, owner: owner, options: nil) as! SpyCell
-    }
-    
-    public static func dequeue(from tableView: UITableView, for indexPath:IndexPath, with spy: Spy) -> SpyCell{
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: SpyCell.cellId, for: indexPath) as! SpyCell
-        
-        cell.configure(with: spy)
-        
-        return cell
-        
-        
-        
-    }
-}
 extension SpyCell{
     
     func configure(with spy: Spy){
@@ -194,20 +155,21 @@ extension SpyCell{
             
             strongSelf.set(age: Int(spy.age))
             strongSelf.set(name: spy.name!)
-            strongSelf.add(imageName: spy.imageName!)
+            strongSelf.add(imageName: spy.imageName)
             
         }
     }
     
     fileprivate func getSomeData(finished: @escaping ()->Void){
         
-        activityIndicator.stopAnimating()
+        activityIndicator.startAnimating()
+        
         activityIndicator.isHidden = false
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
             
-            self?.activityIndicator.stopAnimating()
-            self?.activityIndicator.isHidden = true
+             self?.activityIndicator.stopAnimating()
+             self?.activityIndicator.isHidden = true
             
             finished()
             
@@ -230,5 +192,47 @@ extension SpyCell{
         
         imageContainer.addSubview(imageView)
         
+    }
+}
+//MAKR: - Helper Methods
+
+extension SpyCell{
+
+    public static var cellId: String{
+
+        return "SpyCell"
+    }
+
+    public static var bundle:Bundle {
+        return Bundle(for: SpyCell.self)
+
+    }
+
+    public static var nib: UINib{
+
+        return UINib(nibName: "SpyCell", bundle: SpyCell.bundle)
+
+    }
+
+    public static func register(with tableView:UITableView){
+
+        tableView.register(SpyCell.nib, forCellReuseIdentifier: SpyCell.cellId)
+    }
+
+    public static func loadFromNib(owner: Any?) -> SpyCell{
+
+        return bundle.loadNibNamed(SpyCell.cellId, owner: owner, options: nil)?.first as! SpyCell
+    }
+
+    public static func dequeue(from tableView: UITableView, for indexPath:IndexPath, with spy: Spy) -> SpyCell{
+
+        let cell = tableView.dequeueReusableCell(withIdentifier: SpyCell.cellId, for: indexPath) as! SpyCell
+
+       cell.configure(with: spy)
+
+        return cell
+
+
+
     }
 }

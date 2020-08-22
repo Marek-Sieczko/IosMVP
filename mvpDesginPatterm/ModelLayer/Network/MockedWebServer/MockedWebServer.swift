@@ -28,6 +28,8 @@ class MockedWebServer{
         server["/spies"] = { request in
             
             Thread.sleep(forTimeInterval: 4)
+            
+            print("self.json \(self.json)")
             return .ok(.json(self.json))
             
         }

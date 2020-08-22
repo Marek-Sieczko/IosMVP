@@ -21,7 +21,7 @@ extension Spy {
     @NSManaged public var age: Int64
     @NSManaged public var gender: String?
     @NSManaged public var isIncognito: Bool
-    @NSManaged public var imageName: String?
+    @NSManaged public var imageName: String
     @NSManaged public var password: String?
 
 }

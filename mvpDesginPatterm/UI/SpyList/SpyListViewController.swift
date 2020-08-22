@@ -35,12 +35,23 @@ class SpyListViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.dataSource = self
         tableView.delegate = self
         SpyCell.register(with: tableView)
-        
+        Toast(text:"processing...").show()
        // loadData()
         
-        
+        loadData { [weak self] source in
+            //
+            self?.newDataReceived(from: source)
+        }
+   
         
     }
+    
+    func newDataReceived(from source: Source){
+        
+        Toast(text: "New Data from \(source)").show()
+        tableView.reloadData()
+    }
+
 
 
 }
@@ -67,13 +78,37 @@ extension SpyListViewController{
     func save(dtos: [SpyDTO], finished: @escaping ()->Void){
         
         clearOldResults()
+        _ = toUnsavedCoreData(from: dtos, with: mainContext)
         
+        try! mainContext.save()
+        
+        finished()
+        
+        
+        
+        
+    }
+    
+    func loadFromDBWith(finished: spiesBlock){
+        
+        print("loading data locally")
+        
+        let spies = loadSpiesFromDB()
+        
+        finished(spies)
         
     }
     
     
     
     func loadData(finished: @escaping BlockWithSource){
+        
+        loadData { [weak self] source, spies in
+            
+            self?.data =  spies
+            
+            finished(source)
+        }
  
         
     }
@@ -127,16 +162,52 @@ extension SpyListViewController {
             
             //loadFromDB
             
+            loadFromDB(from: .local)
+            
             //loadFromServer
             
-            func loadFromDB(from source: Source){
-                
-                
+            LoadFromServer { data in
+                let dtos = self.createSpyDTOsFromJsonData(data)
+                self.save(dtos: dtos) {
+                    
+                    loadFromDB(from: .network)
+                }
             }
+            
         }
+        
+        func loadFromDB(from source: Source){
+            
+            loadFromDBWith { spies in
+                
+                resultsLoaded(source,spies)
+            }
+            
+            
+        }
+        
+        mainWork()
+
         
         
     }
+}
+
+//MARK: - Network Methods
+extension SpyListViewController{
+    
+    func LoadFromServer(finished: @escaping (Data) -> Void)  {
+        print("Loading data from server")
+        AF.request("http://localhost:8080/spies").responseJSON { response in
+            
+            print("almofire response \(response)")
+            guard let data = response.data else{
+                 return
+            }
+            finished(data)
+        }
+    }
+    
 }
 
 extension SpyListViewController {
@@ -159,12 +230,21 @@ extension SpyListViewController {
         let spies = dtos.flatMap {  dto in
             
             translate(from: dto, with: context)
+            
+            
 
 
         }
         
         return spies
 
+    }
+    func toSpyDTOs(from spies: [Spy]) -> [SpyDTO]{
+        
+        let dtos = spies.flatMap { translate(from: $0)
+        }
+        
+        return dtos
     }
     
 }
@@ -180,7 +260,7 @@ extension SpyListViewController{
         
         let gender = Gender(rawValue: spy.gender!)!
         
-        return SpyDTO(age: Int(spy.age), name: spy.name!, gender: gender, password: spy.password!, imageName: spy.imageName!, isIncognito: spy.isIncognito)
+        return SpyDTO(age: Int(spy.age), name: spy.name!, gender: gender, password: spy.password!, imageName: spy.imageName, isIncognito: spy.isIncognito)
         
         
     }
@@ -222,5 +302,24 @@ extension SpyListViewController{
         let cell = SpyCell.dequeue(from: tableView, for: indexPath, with: spy)
         return cell
      }
+}
+//MARK: - UITableViewDelegate
+extension SpyListViewController {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 126
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let spy = data[indexPath.row]
+        
+        print(" row with \(indexPath.row)")
+        let detailViewController = DetailsViewController(nibName: "DetailsViewController", bundle: nil)
+        detailViewController.configure(with: spy)
+        navigationController?.pushViewController(detailViewController, animated: true)
+    }
+    
+    
 }
 
