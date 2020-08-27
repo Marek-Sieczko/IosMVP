@@ -2,4 +2,6 @@ ${PODS_ROOT}/Target Support Files/Pods-mvpDesginPatterm/Pods-mvpDesginPatterm-fr
 ${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
 ${BUILT_PRODUCTS_DIR}/Outlaw/Outlaw.framework
 ${BUILT_PRODUCTS_DIR}/Swifter/Swifter.framework
+${BUILT_PRODUCTS_DIR}/Swinject/Swinject.framework
+${BUILT_PRODUCTS_DIR}/SwinjectStoryboard/SwinjectStoryboard.framework
 ${BUILT_PRODUCTS_DIR}/Toaster/Toaster.framework

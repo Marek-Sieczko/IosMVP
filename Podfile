@@ -10,6 +10,8 @@ target 'mvpDesginPatterm' do
   pod 'Alamofire'
   pod 'Swifter'
   pod 'Toaster'
+  pod 'Swinject'
+  pod 'SwinjectStoryboard'
 
   target 'mvpDesginPattermTests' do
     inherit! :search_paths

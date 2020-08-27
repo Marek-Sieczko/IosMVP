@@ -14,6 +14,22 @@ protocol SecretDetailsDelegate: class {
     func passwordCrackingFinished()
 }
 
+protocol SecretDetailsPresenter {
+    //var spy: SpyDTO { get }
+    
+    var password: String{ get }
+}
+class SecretDetailsPresenterImp:SecretDetailsPresenter {
+    var spy: SpyDTO
+    
+    var password: String{ return spy.password}
+    
+    init(with spy: SpyDTO) {
+        
+        self.spy = spy
+    }
+    
+}
 class SecretDetailsViewController: UIViewController {
 
     
@@ -22,10 +38,10 @@ class SecretDetailsViewController: UIViewController {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    var spy: Spy
+    
     weak var delegate: SecretDetailsDelegate?
     
-    
+    fileprivate var secretDetailsPresenter:SecretDetailsPresenter!
     
 
     override func viewDidLoad() {
@@ -41,14 +57,15 @@ class SecretDetailsViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    init(with spy: Spy, and delegate: SecretDetailsDelegate?) {
-        self.spy = spy
+    init(with secretDetailsPresenter: SecretDetailsPresenter, and delegate: SecretDetailsDelegate?) {
+        self.secretDetailsPresenter = secretDetailsPresenter
         self.delegate = delegate
         
         super.init(nibName: "SecretDetailsViewController", bundle: nil)
     }
     
     required init?(coder: NSCoder) {
+        
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -57,8 +74,8 @@ class SecretDetailsViewController: UIViewController {
         
         activityIndicator.stopAnimating()
         activityIndicator.isHidden = true
-        print("The password is \(spy.password)")
-        passwordLable.text = spy.password
+        print("The password is \(secretDetailsPresenter.password)")
+        passwordLable.text = secretDetailsPresenter.password
     }
     
     

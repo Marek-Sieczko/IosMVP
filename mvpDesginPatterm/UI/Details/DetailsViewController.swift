@@ -20,7 +20,8 @@ class DetailsViewController: UIViewController, SecretDetailsDelegate {
     
     @IBOutlet weak var genderLable: UILabel!
     
-    var spy:Spy!
+    var detailsPresenter: DetailsPresenter!
+    fileprivate var secretDetailsViewControllerMaker: DependencyRegistry.SecretDetailsViewControllerMaker!
     
 
     override func viewDidLoad() {
@@ -28,25 +29,26 @@ class DetailsViewController: UIViewController, SecretDetailsDelegate {
         
         superView()
         
-        
+       
         
         
 
         
     }
     
-    func configure(with spy: Spy){
+    func configure(with detailsPresenter: DetailsPresenter, secretDetailsViewControllerMaker:@escaping DependencyRegistry.SecretDetailsViewControllerMaker ){
         
-        self.spy = spy
-        
+      //  self.spy = spy
+        self.detailsPresenter = detailsPresenter
+        self.secretDetailsViewControllerMaker = secretDetailsViewControllerMaker
     }
     
     func superView(){
-        
-        profileImage.image = UIImage(named: spy.imageName)
-        nameLable.text = spy.name
-        ageLable.text = "\(spy.age)"
-        genderLable.text = spy.gender
+//
+        profileImage.image = UIImage(named: self.detailsPresenter.imagename)
+        nameLable.text = self.detailsPresenter.name
+        ageLable.text = "\(self.detailsPresenter.age)"
+        genderLable.text = self.detailsPresenter.gender
     }
 
 
@@ -65,8 +67,9 @@ extension DetailsViewController{
 extension DetailsViewController{
     
     @IBAction func briefcaseTapped(_ button:UIButton){
-        
-        let vc = SecretDetailsViewController(with: spy, and: self as SecretDetailsDelegate)
+      //  let secretDetailsPresenter = SecretDetailsPresenter(with: detailsPresenter.spy)
+       // let vc = SecretDetailsViewController(with: secretDetailsPresenter, and: self as SecretDetailsDelegate)
+        let vc = secretDetailsViewControllerMaker(detailsPresenter.spy, self)
         navigationController?.pushViewController(vc, animated: true)
         
         

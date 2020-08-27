@@ -25,9 +25,9 @@ class SpyCell: UITableViewCell {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    var spy:Spy!
+   
     
-    
+    var spyCellPresenter: SpyCellPresenter!
     
     
     override func prepareForReuse() {
@@ -145,7 +145,11 @@ extension SpyCell{
 }
 extension SpyCell{
     
-    func configure(with spy: Spy){
+    // configure for data binding 
+    
+    func configure(with spyCellPresenter: SpyCellPresenter){
+        
+        self.spyCellPresenter = spyCellPresenter
         
         getSomeData {
             
@@ -153,9 +157,9 @@ extension SpyCell{
             
             guard let strongSelf =  self else{return}
             
-            strongSelf.set(age: Int(spy.age))
-            strongSelf.set(name: spy.name!)
-            strongSelf.add(imageName: spy.imageName)
+            strongSelf.set(age: Int(spyCellPresenter.age))
+            strongSelf.set(name: spyCellPresenter.name)
+            strongSelf.add(imageName: spyCellPresenter.imageName)
             
         }
     }
@@ -224,11 +228,12 @@ extension SpyCell{
         return bundle.loadNibNamed(SpyCell.cellId, owner: owner, options: nil)?.first as! SpyCell
     }
 
-    public static func dequeue(from tableView: UITableView, for indexPath:IndexPath, with spy: Spy) -> SpyCell{
+    public static func dequeue(from tableView: UITableView, for indexPath:IndexPath, with presenter: SpyCellPresenter) -> SpyCell{
+       // let spyCellPresenter =  SpyCellPresenter(spy: spy)
 
         let cell = tableView.dequeueReusableCell(withIdentifier: SpyCell.cellId, for: indexPath) as! SpyCell
 
-       cell.configure(with: spy)
+       cell.configure(with: presenter)
 
         return cell
 

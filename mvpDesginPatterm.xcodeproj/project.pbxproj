@@ -12,6 +12,16 @@
 		4EADB8E98A7D9CD6EC6B9A44 /* Pods_mvpDesginPatterm_mvpDesginPattermUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E522CAF6D1F412709C4A8C1 /* Pods_mvpDesginPatterm_mvpDesginPattermUITests.framework */; };
 		5400545524F01365000A8086 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5400545324F01365000A8086 /* DetailsViewController.swift */; };
 		5400545624F01365000A8086 /* DetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5400545424F01365000A8086 /* DetailsViewController.xib */; };
+		5400545824F14D01000A8086 /* SpyListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5400545724F14D01000A8086 /* SpyListPresenter.swift */; };
+		5400545A24F15784000A8086 /* DetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5400545924F15784000A8086 /* DetailsPresenter.swift */; };
+		5400545C24F1BEF7000A8086 /* SpyCellPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5400545B24F1BEF7000A8086 /* SpyCellPresenter.swift */; };
+		54440DED24F28B7D002313F2 /* TranslationLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54440DEC24F28B7D002313F2 /* TranslationLayer.swift */; };
+		54440DEF24F28BA9002313F2 /* DatabaseLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54440DEE24F28BA9002313F2 /* DatabaseLayer.swift */; };
+		54440DF124F28BBB002313F2 /* ModelLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54440DF024F28BBB002313F2 /* ModelLayer.swift */; };
+		54440DF324F28C29002313F2 /* NetworkLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54440DF224F28C29002313F2 /* NetworkLayer.swift */; };
+		54440DF524F388DD002313F2 /* SpyTranslator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54440DF424F388DD002313F2 /* SpyTranslator.swift */; };
+		544C46F024F6684600E8A441 /* SwinjectStoryboard+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544C46EE24F6684600E8A441 /* SwinjectStoryboard+Extensions.swift */; };
+		544C46F124F6684600E8A441 /* DependencyRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544C46EF24F6684600E8A441 /* DependencyRegistry.swift */; };
 		5454E2EF24E92487003F0557 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5454E2EE24E92487003F0557 /* AppDelegate.swift */; };
 		5454E2F124E92487003F0557 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5454E2F024E92487003F0557 /* SceneDelegate.swift */; };
 		5454E2F324E92487003F0557 /* SpyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5454E2F224E92487003F0557 /* SpyListViewController.swift */; };
@@ -23,6 +33,7 @@
 		5454E32E24E9268F003F0557 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5454E32D24E9268F003F0557 /* Enums.swift */; };
 		5454E33624E927D4003F0557 /* RowType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5454E33524E927D4003F0557 /* RowType.swift */; };
 		5454E33824E927E3003F0557 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5454E33724E927E3003F0557 /* Extensions.swift */; };
+		5454F5F224F3C77000B273FD /* RootNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5454F5F124F3C77000B273FD /* RootNavigationCoordinator.swift */; };
 		54635D5E24EFE1AF00FB4562 /* SecretDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54635D5C24EFE1AF00FB4562 /* SecretDetailsViewController.swift */; };
 		54635D5F24EFE1AF00FB4562 /* SecretDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54635D5D24EFE1AF00FB4562 /* SecretDetailsViewController.xib */; };
 		547FF79B24E92D2D00C922BA /* MvpDesginPattern.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 547FF79924E92D2D00C922BA /* MvpDesginPattern.xcdatamodeld */; };
@@ -59,6 +70,16 @@
 		4E522CAF6D1F412709C4A8C1 /* Pods_mvpDesginPatterm_mvpDesginPattermUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mvpDesginPatterm_mvpDesginPattermUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5400545324F01365000A8086 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		5400545424F01365000A8086 /* DetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsViewController.xib; sourceTree = "<group>"; };
+		5400545724F14D01000A8086 /* SpyListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpyListPresenter.swift; sourceTree = "<group>"; };
+		5400545924F15784000A8086 /* DetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsPresenter.swift; sourceTree = "<group>"; };
+		5400545B24F1BEF7000A8086 /* SpyCellPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpyCellPresenter.swift; sourceTree = "<group>"; };
+		54440DEC24F28B7D002313F2 /* TranslationLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationLayer.swift; sourceTree = "<group>"; };
+		54440DEE24F28BA9002313F2 /* DatabaseLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseLayer.swift; sourceTree = "<group>"; };
+		54440DF024F28BBB002313F2 /* ModelLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelLayer.swift; sourceTree = "<group>"; };
+		54440DF224F28C29002313F2 /* NetworkLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLayer.swift; sourceTree = "<group>"; };
+		54440DF424F388DD002313F2 /* SpyTranslator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpyTranslator.swift; sourceTree = "<group>"; };
+		544C46EE24F6684600E8A441 /* SwinjectStoryboard+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwinjectStoryboard+Extensions.swift"; sourceTree = "<group>"; };
+		544C46EF24F6684600E8A441 /* DependencyRegistry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DependencyRegistry.swift; sourceTree = "<group>"; };
 		5454E2EB24E92487003F0557 /* mvpDesginPattern.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mvpDesginPattern.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5454E2EE24E92487003F0557 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5454E2F024E92487003F0557 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +97,7 @@
 		5454E32D24E9268F003F0557 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		5454E33524E927D4003F0557 /* RowType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowType.swift; sourceTree = "<group>"; };
 		5454E33724E927E3003F0557 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		5454F5F124F3C77000B273FD /* RootNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationCoordinator.swift; sourceTree = "<group>"; };
 		54635D5C24EFE1AF00FB4562 /* SecretDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretDetailsViewController.swift; sourceTree = "<group>"; };
 		54635D5D24EFE1AF00FB4562 /* SecretDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SecretDetailsViewController.xib; sourceTree = "<group>"; };
 		547FF79A24E92D2D00C922BA /* MvpDesginPattern.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MvpDesginPattern.xcdatamodel; sourceTree = "<group>"; };
@@ -126,8 +148,27 @@
 			children = (
 				5400545324F01365000A8086 /* DetailsViewController.swift */,
 				5400545424F01365000A8086 /* DetailsViewController.xib */,
+				5400545924F15784000A8086 /* DetailsPresenter.swift */,
 			);
 			path = Details;
+			sourceTree = "<group>";
+		};
+		54440DEB24F28B17002313F2 /* Translations */ = {
+			isa = PBXGroup;
+			children = (
+				54440DEC24F28B7D002313F2 /* TranslationLayer.swift */,
+				54440DF424F388DD002313F2 /* SpyTranslator.swift */,
+			);
+			path = Translations;
+			sourceTree = "<group>";
+		};
+		544C46ED24F6684600E8A441 /* Injection */ = {
+			isa = PBXGroup;
+			children = (
+				544C46EE24F6684600E8A441 /* SwinjectStoryboard+Extensions.swift */,
+				544C46EF24F6684600E8A441 /* DependencyRegistry.swift */,
+			);
+			path = Injection;
 			sourceTree = "<group>";
 		};
 		5454E2E224E92487003F0557 = {
@@ -155,6 +196,8 @@
 		5454E2ED24E92487003F0557 /* mvpDesginPatterm */ = {
 			isa = PBXGroup;
 			children = (
+				544C46ED24F6684600E8A441 /* Injection */,
+				5454F5F024F3C72800B273FD /* NavigationCoordinator */,
 				5454E32A24E925E6003F0557 /* ModelLayer */,
 				5454E32F24E9269C003F0557 /* UI */,
 				5454E33424E927B1003F0557 /* SupportingClasses */,
@@ -190,6 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				5454E32924E925B1003F0557 /* CoreData */,
+				54440DEE24F28BA9002313F2 /* DatabaseLayer.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -207,6 +251,8 @@
 		5454E32A24E925E6003F0557 /* ModelLayer */ = {
 			isa = PBXGroup;
 			children = (
+				54440DF024F28BBB002313F2 /* ModelLayer.swift */,
+				54440DEB24F28B17002313F2 /* Translations */,
 				5454E32D24E9268F003F0557 /* Enums.swift */,
 				5454E32C24E92634003F0557 /* DTOs */,
 				5454E32B24E92607003F0557 /* Network */,
@@ -219,6 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				547FF7AA24EA906F00C922BA /* MockedWebServer */,
+				54440DF224F28C29002313F2 /* NetworkLayer.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -247,6 +294,7 @@
 			isa = PBXGroup;
 			children = (
 				5454E2F224E92487003F0557 /* SpyListViewController.swift */,
+				5400545724F14D01000A8086 /* SpyListPresenter.swift */,
 			);
 			path = SpyList;
 			sourceTree = "<group>";
@@ -272,6 +320,7 @@
 			children = (
 				547FF7AF24EAB00100C922BA /* SpyCell.swift */,
 				547FF7B024EAB00100C922BA /* SpyCell.xib */,
+				5400545B24F1BEF7000A8086 /* SpyCellPresenter.swift */,
 			);
 			path = SpyCell;
 			sourceTree = "<group>";
@@ -283,6 +332,14 @@
 				5454E33724E927E3003F0557 /* Extensions.swift */,
 			);
 			path = SupportingClasses;
+			sourceTree = "<group>";
+		};
+		5454F5F024F3C72800B273FD /* NavigationCoordinator */ = {
+			isa = PBXGroup;
+			children = (
+				5454F5F124F3C77000B273FD /* RootNavigationCoordinator.swift */,
+			);
+			path = NavigationCoordinator;
 			sourceTree = "<group>";
 		};
 		547FF7AA24EA906F00C922BA /* MockedWebServer */ = {
@@ -560,20 +617,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54440DF324F28C29002313F2 /* NetworkLayer.swift in Sources */,
+				5400545824F14D01000A8086 /* SpyListPresenter.swift in Sources */,
 				547FF7B124EAB00100C922BA /* SpyCell.swift in Sources */,
 				54635D5E24EFE1AF00FB4562 /* SecretDetailsViewController.swift in Sources */,
 				5454E2F324E92487003F0557 /* SpyListViewController.swift in Sources */,
 				547FF7AC24EA909300C922BA /* MockedWebServer.swift in Sources */,
+				54440DF124F28BBB002313F2 /* ModelLayer.swift in Sources */,
 				547FF79B24E92D2D00C922BA /* MvpDesginPattern.xcdatamodeld in Sources */,
 				547FF7A724E92F1100C922BA /* Spy+CoreDataProperties.swift in Sources */,
+				544C46F024F6684600E8A441 /* SwinjectStoryboard+Extensions.swift in Sources */,
 				547FF7A624E92F1100C922BA /* Spy+CoreDataClass.swift in Sources */,
+				5454F5F224F3C77000B273FD /* RootNavigationCoordinator.swift in Sources */,
+				544C46F124F6684600E8A441 /* DependencyRegistry.swift in Sources */,
+				54440DF524F388DD002313F2 /* SpyTranslator.swift in Sources */,
 				5454E2EF24E92487003F0557 /* AppDelegate.swift in Sources */,
 				5454E2F124E92487003F0557 /* SceneDelegate.swift in Sources */,
 				547FF7A924E96C6000C922BA /* spyDTO.swift in Sources */,
+				54440DEF24F28BA9002313F2 /* DatabaseLayer.swift in Sources */,
+				54440DED24F28B7D002313F2 /* TranslationLayer.swift in Sources */,
+				5400545C24F1BEF7000A8086 /* SpyCellPresenter.swift in Sources */,
 				5454E33824E927E3003F0557 /* Extensions.swift in Sources */,
 				5400545524F01365000A8086 /* DetailsViewController.swift in Sources */,
 				5454E33624E927D4003F0557 /* RowType.swift in Sources */,
 				5454E32E24E9268F003F0557 /* Enums.swift in Sources */,
+				5400545A24F15784000A8086 /* DetailsPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

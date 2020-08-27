@@ -3,29 +3,23 @@ import Swinject
 import SwinjectStoryboard
 
 protocol DependencyRegistry {
-    var container: Container { get }
-    var navigationCoordinator: NavigationCoordinator! { get }
     
-    typealias rootNavigationCoordinatorMaker = (UIViewController) -> NavigationCoordinator
-    func makeRootNavigationCoordinator(rootViewController: UIViewController) -> NavigationCoordinator
+    var container: Container{ get }
+    
+    typealias DetailViewControllerMaker = (SpyDTO) -> DetailsViewController
+    func makeSpyCell(for tableView: UITableView, at indexPath: IndexPath, spy: SpyDTO) -> SpyCell
+    
+    typealias SecretDetailsViewControllerMaker = (SpyDTO, SecretDetailsDelegate)  -> SecretDetailsViewController
+    func makeDetailViewController(with spy: SpyDTO) -> DetailsViewController
     
     typealias SpyCellMaker = (UITableView, IndexPath, SpyDTO) -> SpyCell
-    func makeSpyCell(for tableView: UITableView, at indexPath: IndexPath, with spy: SpyDTO) -> SpyCell
+    func makeSecretDetailsViewController(with spy: SpyDTO, delegate: SecretDetailsDelegate) -> SecretDetailsViewController
     
-    typealias DetailViewControllerMaker = (SpyDTO) -> DetailViewController
-    func makeDetailViewController(with spy: SpyDTO) -> DetailViewController
-
-    typealias SecretDetailsViewControllerMaker = (SpyDTO)  -> SecretDetailsViewController
-    func makeSecretDetailsViewController(with spy: SpyDTO) -> SecretDetailsViewController
-
 }
-
-class DependencyRegistryImpl: DependencyRegistry {
+class DependencyRegistryImp: DependencyRegistry {
 
     var container: Container
-    var navigationCoordinator: NavigationCoordinator!
     
-
     init(container: Container) {
         
         Container.loggingFunction = nil
@@ -39,65 +33,64 @@ class DependencyRegistryImpl: DependencyRegistry {
     
     func registerDependencies() {
         
-        container.register(NavigationCoordinator.self) { (r, rootViewController: UIViewController) in
-            return RootNavigationCoordinatorImpl(with: rootViewController, registry: self)
-        }.inObjectScope(.container)
-        
-        container.register(NetworkLayer.self    ) { _ in NetworkLayerImpl()  }.inObjectScope(.container)
-        container.register(DataLayer.self       ) { _ in DataLayerImpl()     }.inObjectScope(.container)
-        container.register(SpyTranslator.self   ) { _ in SpyTranslatorImpl() }.inObjectScope(.container)
+        container.register(NetworkLayer.self    ) { _ in NetworkLayerImp()  }.inObjectScope(.container)
+        container.register(DatabaseLayer.self       ) { _ in DatabaseLayerImp()     }.inObjectScope(.container)
+        container.register(SpyTranslator.self   ) { _ in SpyTranslatorImp() }.inObjectScope(.container)
         
         container.register(TranslationLayer.self) { r in
-            TranslationLayerImpl(spyTranslator: r.resolve(SpyTranslator.self)!)
+            TranslationLayerImp(spyTranslator: r.resolve(SpyTranslator.self)!)
         }.inObjectScope(.container)
 
         container.register(ModelLayer.self){ r in
-            ModelLayerImpl(networkLayer:     r.resolve(NetworkLayer.self)!,
-                           dataLayer:        r.resolve(DataLayer.self)!,
-                           translationLayer: r.resolve(TranslationLayer.self)!)
+            ModelLayerImp(networkLayer:     r.resolve(NetworkLayer.self)!, dataBaseLayer:        r.resolve(DatabaseLayer.self)!,
+                             translationLayer: r.resolve(TranslationLayer.self)!)
         }.inObjectScope(.container)
     }
     
     func registerPresenters() {
-        container.register(SpyListPresenter.self) { r in SpyListPresenterImpl(modelLayer: r.resolve(ModelLayer.self)!) }
-        container.register( DetailPresenter.self) { (r, spy: SpyDTO)  in DetailPresenterImpl(with: spy) }
-        container.register(SpyCellPresenter.self) { (r, spy: SpyDTO) in SpyCellPresenterImpl(with: spy) }
-        container.register(SecretDetailsPresenter.self) { (r, spy: SpyDTO) in SecretDetailsPresenterImpl(with: spy) }
+        container.register(SpyListPresenter.self) { r in SpyListPresenterImp(modelLayer: r.resolve(ModelLayer.self)!) }
+        container.register( DetailsPresenter.self) { (r, spy: SpyDTO)  in DetailsPresenterImp(with: spy) }
+        container.register(SpyCellPresenter.self) { (r, spy: SpyDTO) in SpyCellPresenterImp(spy: spy) }
+        container.register(SecretDetailsPresenter.self) { (r, spy: SpyDTO) in SecretDetailsPresenterImp(with: spy) }
     }
     
     func registerViewControllers() {
-        container.register(SecretDetailsViewController.self) { (r, spy: SpyDTO) in
+        container.register(SecretDetailsViewController.self) { (r, spy: SpyDTO, delegate: SecretDetailsDelegate) in
             let presenter = r.resolve(SecretDetailsPresenter.self, argument: spy)!
-            return SecretDetailsViewController(with: presenter, navigationCoordinator: self.navigationCoordinator)
+            return SecretDetailsViewController(with: presenter, and: delegate)
         }
-        container.register(DetailViewController.self) { (r, spy:SpyDTO) in
-            let presenter = r.resolve(DetailPresenter.self, argument: spy)!
-
-            //NOTE: We don't have access to the constructor for this VC so we are using method injection
-            let vc = UIStoryboard.main.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-                vc.configure(with: presenter, navigationCoordinator: self.navigationCoordinator)
-            return vc
+        
+        container.register(DetailsViewController.self) {  (r,spy:SpyDTO) in
+            let presenter =  r.resolve(DetailsPresenter.self, argument: spy)
+            let detailViewController = DetailsViewController(nibName: "DetailsViewController", bundle: nil)
+            detailViewController.configure(with: presenter!, secretDetailsViewControllerMaker: self.makeSecretDetailsViewController)
+            
+            return detailViewController
+            
         }
+        container.register(DetailsViewController.self) { _ in
+            DetailsViewController()
+            
+            
+        }.inObjectScope(.container)
     }
 
     //MARK: - Maker Methods
-    func makeRootNavigationCoordinator(rootViewController: UIViewController) -> NavigationCoordinator {
-        navigationCoordinator = container.resolve(NavigationCoordinator.self, argument: rootViewController)!
-        return navigationCoordinator
-    }
-
     
-    func makeSpyCell(for tableView: UITableView, at indexPath: IndexPath, with spy: SpyDTO) -> SpyCell {
+    func makeSpyCell(for tableView: UITableView, at indexPath: IndexPath, spy: SpyDTO) -> SpyCell {
         let presenter = container.resolve(SpyCellPresenter.self, argument: spy)!
-        let cell = SpyCell.dequeue(from: tableView, for: indexPath, with: presenter)
+        let cell = SpyCell.dequeue(from: tableView, for: indexPath, with: presenter
+        )
         return cell
     }
     
-    func makeDetailViewController(with spy: SpyDTO) -> DetailViewController {
-        return container.resolve(DetailViewController.self, argument: spy)!
+    
+    func makeDetailViewController(with spy: SpyDTO) -> DetailsViewController {
+        return container.resolve(DetailsViewController.self, argument: spy)!
     }
 
-    func makeSecretDetailsViewController(with spy: SpyDTO) -> SecretDetailsViewController {
-        return container.resolve(SecretDetailsViewController.self, argument: spy)!
+    
+    func makeSecretDetailsViewController(with spy: SpyDTO, delegate: SecretDetailsDelegate) -> SecretDetailsViewController {
+        return container.resolve(SecretDetailsViewController.self, arguments: spy, delegate)!
     }
 }

@@ -2,12 +2,17 @@ PODS:
   - Alamofire (5.2.1)
   - Outlaw (1.1.0)
   - Swifter (1.4.7)
+  - Swinject (2.7.1)
+  - SwinjectStoryboard (2.2.0):
+    - Swinject (~> 2.6)
   - Toaster (2.2.0)
 
 DEPENDENCIES:
   - Alamofire
   - Outlaw
   - Swifter
+  - Swinject
+  - SwinjectStoryboard
   - Toaster
 
 SPEC REPOS:
@@ -15,14 +20,18 @@ SPEC REPOS:
     - Alamofire
     - Outlaw
     - Swifter
+    - Swinject
+    - SwinjectStoryboard
     - Toaster
 
 SPEC CHECKSUMS:
   Alamofire: e911732990610fe89af59ac0077f923d72dc3dfd
   Outlaw: 00b32d73bee9a62b5150683f70c491d3307d999f
   Swifter: 2327ef5d872c638aebab79646ce494af508b0c8f
+  Swinject: ddf78b8486dd9b71a667b852cad919ab4484478e
+  SwinjectStoryboard: 32512ef16c2b0ff5b8f823b23539c4a50f6d3383
   Toaster: c1a81b376edcc2470157b4d1ee1e9341d3b96455
 
-PODFILE CHECKSUM: 8557d7b4b14fc4829265459410447f40ad55af8c
+PODFILE CHECKSUM: 03f023bd237434a447a4db6a7e7f18d56ff0c0fa
 
 COCOAPODS: 1.9.3
