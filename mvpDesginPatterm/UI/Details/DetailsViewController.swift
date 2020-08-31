@@ -22,6 +22,7 @@ class DetailsViewController: UIViewController, SecretDetailsDelegate {
     
     var detailsPresenter: DetailsPresenter!
     fileprivate var secretDetailsViewControllerMaker: DependencyRegistry.SecretDetailsViewControllerMaker!
+    weak var navigationCoordinator: NavigationCoordinator?
     
 
     override func viewDidLoad() {
@@ -36,11 +37,12 @@ class DetailsViewController: UIViewController, SecretDetailsDelegate {
         
     }
     
-    func configure(with detailsPresenter: DetailsPresenter, secretDetailsViewControllerMaker:@escaping DependencyRegistry.SecretDetailsViewControllerMaker ){
+    func configure(with detailsPresenter: DetailsPresenter, navigationCoordinator:NavigationCoordinator ){
         
       //  self.spy = spy
         self.detailsPresenter = detailsPresenter
-        self.secretDetailsViewControllerMaker = secretDetailsViewControllerMaker
+        self.navigationCoordinator = navigationCoordinator
+       // self.secretDetailsViewControllerMaker = secretDetailsViewControllerMaker
     }
     
     func superView(){
@@ -50,6 +52,14 @@ class DetailsViewController: UIViewController, SecretDetailsDelegate {
         ageLable.text = "\(self.detailsPresenter.age)"
         genderLable.text = self.detailsPresenter.gender
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+          super.viewWillDisappear(animated)
+         if isMovingFromParent{
+          
+          navigationCoordinator?.movingBack()
+          }
+      }
 
 
 
@@ -69,9 +79,16 @@ extension DetailsViewController{
     @IBAction func briefcaseTapped(_ button:UIButton){
       //  let secretDetailsPresenter = SecretDetailsPresenter(with: detailsPresenter.spy)
        // let vc = SecretDetailsViewController(with: secretDetailsPresenter, and: self as SecretDetailsDelegate)
-        let vc = secretDetailsViewControllerMaker(detailsPresenter.spy, self)
-        navigationController?.pushViewController(vc, animated: true)
+     //   let vc = secretDetailsViewControllerMaker(detailsPresenter.spy, self)
+      //  navigationController?.pushViewController(vc, animated: true)
+        next(spy: detailsPresenter.spy)
         
         
+    }
+    
+    func next(spy:SpyDTO){
+        
+        let args = ["spy":spy]
+        navigationCoordinator!.next(arguments: args)
     }
 }

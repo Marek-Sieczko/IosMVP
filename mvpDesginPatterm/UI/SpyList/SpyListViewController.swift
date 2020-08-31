@@ -18,16 +18,18 @@ class SpyListViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet weak var tableView: UITableView!
     
+    weak var navigationCoordinator: NavigationCoordinator?
+    
     fileprivate var presenter : SpyListPresenter!
-    fileprivate var detailViewControllerMaker : DependencyRegistry.DetailViewControllerMaker!
+//    fileprivate var detailViewControllerMaker : DependencyRegistry.DetailViewControllerMaker!
     fileprivate var spyCellMaker: DependencyRegistry.SpyCellMaker!
     
     
-    func configure(with presenter:SpyListPresenter,detailViewControllerMaker: @escaping DependencyRegistry.DetailViewControllerMaker, spyCellMaker: @escaping DependencyRegistry.SpyCellMaker  ){
+    func configure(with presenter:SpyListPresenter,navigationCoordinator: NavigationCoordinator, spyCellMaker: @escaping DependencyRegistry.SpyCellMaker  ){
         
         self.presenter = presenter
         self.spyCellMaker = spyCellMaker
-        self.detailViewControllerMaker = detailViewControllerMaker
+        self.navigationCoordinator =  navigationCoordinator
     }
 
     override func viewDidLoad() {
@@ -92,8 +94,15 @@ extension SpyListViewController {
       //  let detailViewController = DetailsViewController(nibName: "DetailsViewController", bundle: nil)
      //   let detailsPresenter = DetailsPresenter(with: spy)
       //  detailViewController.configure(with: detailsPresenter)
-        let detailsPresenter = detailViewControllerMaker(spy)
-        navigationController?.pushViewController(detailsPresenter, animated: true)
+      //  let detailsPresenter = detailViewControllerMaker(spy)
+       // navigationController?.pushViewController(detailsPresenter, animated: true)
+        next(spy: spy)
+    }
+    
+    func next(spy:SpyDTO){
+        
+        let args = ["spy":spy]
+        navigationCoordinator!.next(arguments: args)
     }
     
     

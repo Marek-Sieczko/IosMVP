@@ -42,6 +42,7 @@ class SecretDetailsViewController: UIViewController {
     weak var delegate: SecretDetailsDelegate?
     
     fileprivate var secretDetailsPresenter:SecretDetailsPresenter!
+    weak var navigationCoordinator: NavigationCoordinator?
     
 
     override func viewDidLoad() {
@@ -57,9 +58,10 @@ class SecretDetailsViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    init(with secretDetailsPresenter: SecretDetailsPresenter, and delegate: SecretDetailsDelegate?) {
+    init(with secretDetailsPresenter: SecretDetailsPresenter, navigationCoordinator:NavigationCoordinator ) {
         self.secretDetailsPresenter = secretDetailsPresenter
-        self.delegate = delegate
+      //  self.delegate = delegate
+        self.navigationCoordinator = navigationCoordinator
         
         super.init(nibName: "SecretDetailsViewController", bundle: nil)
     }
@@ -78,14 +80,23 @@ class SecretDetailsViewController: UIViewController {
         passwordLable.text = secretDetailsPresenter.password
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+       if isMovingFromParent{
+        
+        navigationCoordinator?.movingBack()
+        }
+    }
+    
     
     @IBAction func finishedButtonTapped(_ sender: Any) {
         
         print("button tapped!!")
         
-        navigationController?.popViewController(animated: true)
-        
-            delegate?.passwordCrackingFinished()
+//        navigationController?.popViewController(animated: true)
+//
+//            delegate?.passwordCrackingFinished()
+        navigationCoordinator?.next(arguments: [:])
     }
     
     
