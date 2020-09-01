@@ -12,6 +12,9 @@ target 'mvpDesginPatterm' do
   pod 'Toaster'
   pod 'Swinject'
   pod 'SwinjectStoryboard'
+  pod 'RxSwift'
+  pod 'RxCocoa'
+  pod 'RxDataSources'
 
   target 'mvpDesginPattermTests' do
     inherit! :search_paths
