@@ -9,10 +9,11 @@
 import UIKit
 import Foundation
 import Toaster
+import RxSwift
+import RxDataSources
+import RxCocoa
 
-
-
-class SpyListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class SpyListViewController: UIViewController, UITableViewDelegate{
  
     
     
@@ -23,6 +24,11 @@ class SpyListViewController: UIViewController, UITableViewDelegate, UITableViewD
     fileprivate var presenter : SpyListPresenter!
 //    fileprivate var detailViewControllerMaker : DependencyRegistry.DetailViewControllerMaker!
     fileprivate var spyCellMaker: DependencyRegistry.SpyCellMaker!
+    
+    fileprivate var bag = DisposeBag()
+    fileprivate var dataSource : RxTableViewSectionedReloadDataSource<SpySection>?
+   // fileprivate var configCell : ConfigureCell?
+    
     
     
     func configure(with presenter:SpyListPresenter,navigationCoordinator: NavigationCoordinator, spyCellMaker: @escaping DependencyRegistry.SpyCellMaker  ){
@@ -35,20 +41,36 @@ class SpyListViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
        
-        tableView.dataSource = self
-        tableView.delegate = self
+
         SpyCell.register(with: tableView)
-   //     Toast(text:"processing...").show()
+        dataSource = RxTableViewSectionedReloadDataSource<SpySection>(configureCell: { _, tableView, indexPath, spy in
+            
+            let cell = self.spyCellMaker(tableView,indexPath,spy)
+            
+            return cell
+            
+        })
+
+  
         
-       // presenter = SpyListPresenter()
-        
-       // loadData()
+
+        initDataSource()
+        initTableView()
+
         
         presenter.loadData { [weak self] source in
             //
             self?.newDataReceived(from: source)
         }
    
+        
+    }
+    
+
+    
+    @IBAction func updateData(_ sender:Any){
+        
+        presenter.makeSomeChanges()
         
     }
     
@@ -65,20 +87,7 @@ class SpyListViewController: UIViewController, UITableViewDelegate, UITableViewD
 
 //MARK: UITableViewDataSource
 
-extension SpyListViewController{
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.data.count
-     }
 
-     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // let cell
-        
-        let spy = presenter.data[indexPath.row]
-        let cell = spyCellMaker(tableView, indexPath, spy)
-        return cell
-     }
-}
 //MARK: - UITableViewDelegate
 extension SpyListViewController {
     
@@ -86,23 +95,52 @@ extension SpyListViewController {
         return 126
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let spy = presenter.data[indexPath.row]
-        
-        print(" row with \(indexPath.row)")
-      //  let detailViewController = DetailsViewController(nibName: "DetailsViewController", bundle: nil)
-     //   let detailsPresenter = DetailsPresenter(with: spy)
-      //  detailViewController.configure(with: detailsPresenter)
-      //  let detailsPresenter = detailViewControllerMaker(spy)
-       // navigationController?.pushViewController(detailsPresenter, animated: true)
-        next(spy: spy)
-    }
     
     func next(spy:SpyDTO){
         
         let args = ["spy":spy]
         navigationCoordinator!.next(arguments: args)
+    }
+    
+    
+}
+extension SpyListViewController{
+    
+    //MARK: - reactive section
+    
+    func initDataSource(){
+        
+        dataSource!.configureCell = { _, tableView, indexPath, spy in
+
+            let cell = self.spyCellMaker(tableView,indexPath,spy)
+
+            return cell
+
+        }
+        dataSource!.titleForHeaderInSection = { ds, index in
+            
+            return ds.sectionModels[index].header
+            
+            
+        }
+        
+    }
+    
+    func initTableView(){
+        
+        presenter.section.asObservable().bind(to: tableView.rx.items(dataSource: dataSource!)).disposed(by: bag)
+        
+        // handle actions on cell
+        
+        tableView.rx.itemSelected.map { indexPath in
+            return (indexPath, self.dataSource![indexPath])
+        }.subscribe(onNext: { (indexPath,spy) in
+            self.next(spy: spy)
+            }).disposed(by: bag)
+    
+        tableView.rx.setDelegate(self)
+        .disposed(by: bag)
+        
     }
     
     
