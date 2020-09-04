@@ -1,4 +1,4 @@
-# IosMVP
+# MVP(Model-View-Presenter)
 This repository contains an ios project that has MVP (model-view-presenter) design pattern besides reactive programming libs implemented 
 
 ---
