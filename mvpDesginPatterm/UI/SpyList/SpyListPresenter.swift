@@ -97,8 +97,8 @@ extension SpyListPresenterImp{
             let everyDaySpy = spies.filter { !$0.isIncognito }
             
             
-            return [SpySection(header: "", items: isIncognito),
-                    SpySection(header: "", items: everyDaySpy)]
+            return [SpySection(header: "normal", items: isIncognito),
+                    SpySection(header: "special", items: everyDaySpy)]
             
             }
         
